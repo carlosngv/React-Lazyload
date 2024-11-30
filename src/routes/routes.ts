@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import { NoLazy } from "../01-lazyload/pages/NoLazy";
 // import { LazyPage, LazyPage2, LazyPage3 } from "../01-lazyload/pages";
 
 type JSXComponent = () => JSX.Element;
@@ -17,27 +18,21 @@ const delayDemo = ( promise: any ) => {
     }).then( () => promise );
 }
 
-const LazyPage = lazy( () => delayDemo(import( '../01-lazyload/pages/LazyPage')) )
-const LazyPage2 = lazy( () => import(/* webpackChunkName: "LazyPage2Chunk" */ '../01-lazyload/pages/LazyPage2') )
-const LazyPage3 = lazy( () => import(/* webpackChunkName: "LazyPage3_chunk" */ '../01-lazyload/pages/LazyPage3') )
+// const LazyPage = lazy( () => delayDemo(import( '../01-lazyload/pages/LazyPage')) )
+const LazyLayout = lazy( () => import(/* webpackChunkName: "LazyPage2Chunk" */ '../01-lazyload/layout/LazyLayout') )
 
 export const routes: Routes[] = [
     {
-        to: '/lazy1',
-        path: 'lazy1',
-        Component: LazyPage,
-        name: 'Lazy-1',
+        path: '/dashboard/*',
+        to: '/dashboard/',
+        Component: LazyLayout,
+        name: 'LazyLayout - Dashboard',
     },
     {
-        to: '/lazy2',
-        path: 'lazy2',
-        Component: LazyPage2,
-        name: 'Lazy-2',
+        to: '/no-lazy',
+        path: 'no-lazy',
+        Component: NoLazy,
+        name: 'NoLazy',
     },
-    {
-        to: '/lazy3',
-        path: 'lazy3',
-        Component: LazyPage3,
-        name: 'Lazy-3',
-    },
+
 ]
