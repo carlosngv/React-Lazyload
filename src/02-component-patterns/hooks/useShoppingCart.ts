@@ -11,9 +11,8 @@ export const useShoppingCart = () => {
 
     const onProductCountChange = ( { product, count }: onChangeArgs ) => {
 
-        console.log( count  )
         setShoppingCart( ( prev ) => {
-          
+          console.log({prev})
             // ? Ubica el producto en el carrito.
             // ? Si no existe, de una vez lo crea
             const productInCart: ProductInCart = prev[ product.id ] || { ...product, count: 0 };
